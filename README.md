@@ -1,37 +1,23 @@
-## Welcome to GitHub Pages
+## Diego Márquez
 
-You can use the [editor on GitHub](https://github.com/oddyEC/oddyEC/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+Soy un estudiante de Ingeniería de Software aficionado al Desarrollo Web y a la Inteligencia Artificial.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Mis estudios
+*Estudiante de Ingeniería de Software en la [Escuela Politécnica Nacional](https://www.epn.edu.ec)* 🇪🇨
 
-### Markdown
+### Actualmente enfocado en aprender
+<img width="30" height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png"> <img width="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png">
+<img width="45" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1280px-Node.js_logo.svg.png">
+<img width="50" height="29" src="https://www.python.org/static/community_logos/python-logo-inkscape.svg">
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/oddyEC/oddyEC/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+### Mis redes
+<span>
+  <a href="https://www.linkedin.com/in/diego-marquezec/">
+    <img align="left" alt="Diego Marquez | LinkedIn " width="50px" src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Linkedin_icon.svg" />
+  </a>
+  <a href="https://twitter.com/diego_marquezEC">
+    <img align="left" alt="Diego Marquez | Twitter " width="35px" src="https://upload.wikimedia.org/wikipedia/commons/1/19/Twitter_icon.svg" />
+  </a>
+  
+  
+</span>
