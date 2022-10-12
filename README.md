@@ -1,6 +1,6 @@
 ## Diego Márquez
 
-Soy un estudiante de Ingeniería de Software enfocado en el Desarrollo Web y la Inteligencia Artificial.
+Egresado de Ingeniería de Software enfocado en el Desarrollo Web y la Inteligencia Artificial.
 
 ### Mis estudios
 *Estudiante de Ingeniería de Software en la [Escuela Politécnica Nacional](https://www.epn.edu.ec)* 🇪🇨
