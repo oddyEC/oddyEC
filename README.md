@@ -7,7 +7,7 @@ Ingeniero de Software enfocado en el Desarrollo Web y la Ciencia de Datos.
 <br>
 *Frontend Developer*
 <br>
-*Actualmente estudiando una maestría en Ciencias de Datos en [Universidad San Franciasco de Quito](https://www.usfq.edu.ec/es/posgrados/maestria-en-ciencia-de-datos)* 🇪🇨
+*Actualmente estudiando una maestría en Ciencia de Datos en [Universidad San Franciasco de Quito](https://www.usfq.edu.ec/es/posgrados/maestria-en-ciencia-de-datos)* 🇪🇨
 
 ### Actualmente enfocado en aprender
 <img width="30" height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png">
