@@ -12,7 +12,6 @@ Soy Especialista de Datos en el área de información pecuaria en la empresa ecu
 - 🤔 **¿En qué puedo ayudarte?** En temas de analítica de datos, diseño de reportes en **Power BI**, manejo de **SQL** y **Python**, y estrategias de data science en la industria pecuaria.  
 - 💬 **Hablemos** de proyectos de análisis, predicción y de cómo aprovechar los datos para optimizar procesos.  
 - 📫 **Contacto**: [LinkedIn]([https://www.linkedin.com](https://www.linkedin.com/in/diego-marquezec/)) | [Email](mailto:diegomarquez2008@outlook.com)  
-- 😄 **Pronombres**: Él/Él.  
 - ⚡ **Fun fact**: Me apasiona explorar nuevas tecnologías para impulsar la innovación dentro de la industria pecuaria.
 
 ---
