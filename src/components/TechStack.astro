@@ -1,0 +1,17 @@
+---
+import { profile } from "@config/profile";
+
+const { technologies } = profile;
+---
+
+<div class="tech-stack" aria-label="Technologies">
+  {technologies.map((tech) => (
+    <div class="tech-card" style={`--tech-color: ${tech.color}; --tech-ink: ${tech.ink};`}>
+      <span class="tech-mark" aria-hidden="true">{tech.icon}</span>
+      <span class="tech-copy">
+        <strong>{tech.name}</strong>
+        <small>{tech.category}</small>
+      </span>
+    </div>
+  ))}
+</div>

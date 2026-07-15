@@ -1,0 +1,37 @@
+---
+import { profile } from "@config/profile";
+
+const { certifications } = profile;
+---
+
+<div class="credentials-panel" id="credentials">
+  <div class="credentials-heading">
+    <p class="section-kicker">Credentials</p>
+    <h3>Verified certifications</h3>
+  </div>
+
+  <div class="certification-list" aria-label="Verified certifications">
+    {certifications.map((cert) => (
+      <a class="certification-card" href={cert.verificationUrl} target="_blank" rel="noreferrer">
+        <img
+          class="certification-badge"
+          src={cert.imageUrl}
+          alt={`${cert.name} issued by ${cert.issuer}`}
+          width="120"
+          height="120"
+          loading="lazy"
+          decoding="async"
+        />
+        <span class="certification-copy">
+          <span class="certification-issuer">{cert.issuer}</span>
+          <strong>{cert.name}</strong>
+          <span>{cert.summary}</span>
+          <span class="certification-meta">Issued to {cert.issuedTo} - Verify on Credly</span>
+          <span class="certification-skills" aria-label="Credential skills">
+            {cert.skills.map((skill) => <span>{skill}</span>)}
+          </span>
+        </span>
+      </a>
+    ))}
+  </div>
+</div>

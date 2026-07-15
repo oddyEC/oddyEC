@@ -1,15 +1,16 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import Certifications from "@components/Certifications.astro";
 import ContactCTA from "@components/ContactCTA.astro";
 import HeroWorkflow from "@components/HeroWorkflow.astro";
 import ProjectPreview from "@components/ProjectPreview.astro";
+import TechStack from "@components/TechStack.astro";
 import { profile, isConfiguredUrl } from "@config/profile";
 import { entrySlug, withBase } from "@utils/paths";
 
 const projects = (await getCollection("projects")).sort((a, b) => a.data.priority - b.data.priority);
 const githubReady = isConfiguredUrl(profile.githubUrl);
-const resumeReady = profile.resume.enabled;
 const portraitSrc = withBase(profile.portrait.src);
 ---
 
@@ -33,13 +34,6 @@ const portraitSrc = withBase(profile.portrait.src);
             <a class="button secondary" href={profile.githubUrl} target="_blank" rel="noreferrer">GitHub</a>
           ) : (
             <span class="button secondary is-disabled" aria-disabled="true" title="Replace YOUR_GITHUB_URL in src/config/profile.ts">GitHub</span>
-          )
-        }
-        {
-          resumeReady ? (
-            <a class="button secondary" href={withBase(profile.resume.path)}>Download résumé</a>
-          ) : (
-            <span class="button secondary is-disabled" aria-disabled="true" title="Add public/resume.pdf and enable it in src/config/profile.ts">Download résumé</span>
           )
         }
       </div>
@@ -101,7 +95,11 @@ const portraitSrc = withBase(profile.portrait.src);
         <p>I’m an AI Engineer with a background in software engineering and a master’s degree in Data Science.</p>
         <p>My experience combines applied machine learning, data engineering, backend development, cloud infrastructure, and enterprise AI architecture. More recently, I have focused on agentic workflows, RAG, AI evaluation, governance, and the infrastructure required to operate LLM-powered systems reliably.</p>
         <p>I’m particularly interested in roles where I can own the path from technical design to production behavior and measurable business value.</p>
-        <p class="tech-line">{profile.technologies}</p>
+        <div class="stack-panel">
+          <p class="section-kicker">Technology Stack</p>
+          <TechStack />
+        </div>
+        <Certifications />
       </div>
     </div>
   </section>

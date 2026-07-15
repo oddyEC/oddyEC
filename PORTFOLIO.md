@@ -44,13 +44,9 @@ Edit [src/config/profile.ts](src/config/profile.ts) to replace placeholders:
 - `YOUR_EMAIL`
 - `YOUR_SITE_URL`
 
-The résumé link is disabled by default because this repository does not include a real `resume.pdf`. To enable it:
+Credentials are configured in `profile.certifications`. Each entry can include issuer, public Credly verification URL, badge image URL, summary, and skills.
 
-1. Add the real PDF at `public/resume.pdf`.
-2. Set `resume.enabled` to `true` in [src/config/profile.ts](src/config/profile.ts).
-3. Keep `resume.path` as `/resume.pdf`, or replace it with another real URL.
-
-Do not add a fake résumé file.
+Keep certification links public and verifiable; do not add unverified credential claims.
 
 ## Add Or Edit Projects
 

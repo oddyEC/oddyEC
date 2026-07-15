@@ -5,19 +5,12 @@ import { withBase } from "@utils/paths";
 
 const githubReady = isConfiguredUrl(profile.githubUrl);
 const linkedInReady = isConfiguredUrl(profile.linkedInUrl);
-const resumeReady = profile.resume.enabled;
-const resumeHref = resumeReady ? withBase(profile.resume.path) : "";
 
 const navItems = [
   { label: "Work", href: withBase("/#work") },
   { label: "Notes", href: withBase("/notes/") },
   { label: "About", href: withBase("/#about") },
-  {
-    label: "Résumé",
-    href: resumeHref,
-    disabled: !resumeReady,
-    title: "Add public/resume.pdf and enable it in src/config/profile.ts",
-  },
+  { label: "Credentials", href: withBase("/#credentials") },
   {
     label: "GitHub",
     href: githubReady ? profile.githubUrl : "",

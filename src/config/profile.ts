@@ -13,14 +13,32 @@ export const profile = {
     src: "/media/diego-marquez.jpg",
     alt: "Diego Marquez in a gray blazer.",
   },
-  resume: {
-    enabled: false,
-    path: "/resume.pdf",
-    label: "Download résumé",
-    disabledLabel: "Résumé pending",
-  },
-  technologies:
-    "Python · Django · PostgreSQL · Redis · Celery · LangGraph · MCP · RAG · Evaluation · Observability · GCP · Docker · CI/CD",
+  technologies: [
+    { name: "Python", icon: "Py", category: "Language", color: "#3776ab", ink: "#ffffff" },
+    { name: "Django", icon: "Dj", category: "Backend", color: "#0c4b33", ink: "#ffffff" },
+    { name: "PostgreSQL", icon: "PG", category: "Database", color: "#336791", ink: "#ffffff" },
+    { name: "Redis", icon: "Rd", category: "Cache", color: "#dc382d", ink: "#ffffff" },
+    { name: "Celery", icon: "Ce", category: "Workers", color: "#37814a", ink: "#ffffff" },
+    { name: "LangGraph", icon: "LG", category: "Agents", color: "#1f8a70", ink: "#ffffff" },
+    { name: "MCP", icon: "MCP", category: "Tooling", color: "#6c5ce7", ink: "#ffffff" },
+    { name: "RAG", icon: "RAG", category: "AI Systems", color: "#f59e0b", ink: "#111827" },
+    { name: "Evaluation", icon: "Ev", category: "Quality", color: "#0ea5e9", ink: "#ffffff" },
+    { name: "Observability", icon: "Ob", category: "Operations", color: "#14b8a6", ink: "#06201c" },
+    { name: "Google Cloud", icon: "GCP", category: "Cloud", color: "#4285f4", ink: "#ffffff" },
+    { name: "Docker", icon: "Do", category: "Delivery", color: "#2496ed", ink: "#ffffff" },
+  ],
+  certifications: [
+    {
+      name: "Professional Cloud Architect Certification",
+      issuer: "Google Cloud",
+      issuedTo: "Diego Marquez",
+      verificationUrl: "https://www.credly.com/badges/bdd1070e-5688-4a0d-b27f-c7cdeff4ace2",
+      imageUrl: "https://images.credly.com/images/71c579e0-51fd-4247-b493-d2fa8167157a/linkedin_thumb_image.png",
+      summary:
+        "Verified credential for designing, developing, and managing secure, scalable, highly available Google Cloud solutions.",
+      skills: ["Cloud architecture", "Security", "Reliability", "Scalability"],
+    },
+  ],
 };
 
 export function isConfiguredUrl(value: string | null | undefined): value is string {

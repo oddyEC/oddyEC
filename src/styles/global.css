@@ -704,14 +704,141 @@ select {
   font-size: 1.05rem;
 }
 
-.tech-line {
+.stack-panel,
+.credentials-panel {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 0.45rem;
+}
+
+.tech-stack {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.65rem;
+}
+
+.tech-card {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: center;
+  min-height: 64px;
+  gap: 0.75rem;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: rgba(215, 247, 239, 0.035);
-  color: var(--text);
+  padding: 0.65rem;
+}
+
+.tech-mark {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--tech-color);
+  color: var(--tech-ink);
   font-family: var(--font-mono);
-  font-size: 0.92rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.tech-copy {
+  display: grid;
+  min-width: 0;
+  line-height: 1.15;
+}
+
+.tech-copy strong {
+  overflow-wrap: anywhere;
+  color: var(--text);
+  font-size: 0.94rem;
+}
+
+.tech-copy small {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.credentials-heading {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.credentials-heading h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.22rem;
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+
+.certification-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.certification-card {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(215, 247, 239, 0.035);
   padding: 1rem;
+}
+
+.certification-card:hover {
+  border-color: var(--border-strong);
+  background: rgba(64, 240, 200, 0.07);
+  color: var(--text);
+}
+
+.certification-badge {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+}
+
+.certification-copy {
+  display: grid;
+  min-width: 0;
+  gap: 0.38rem;
+  color: var(--text-muted);
+}
+
+.certification-copy strong {
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.certification-issuer,
+.certification-meta {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.certification-meta {
+  color: var(--text-soft);
+}
+
+.certification-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+}
+
+.certification-skills span {
+  border: 1px solid rgba(215, 247, 239, 0.12);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.42rem;
 }
 
 .contact-cta {
@@ -1114,7 +1241,8 @@ select {
 :root[data-theme="light"] .decision-block,
 :root[data-theme="light"] .note-preview,
 :root[data-theme="light"] .about-portrait,
-:root[data-theme="light"] .tech-line,
+:root[data-theme="light"] .tech-card,
+:root[data-theme="light"] .certification-card,
 :root[data-theme="light"] .architecture-node,
 :root[data-theme="light"] .table-wrap {
   background: rgba(255, 255, 255, 0.64);
@@ -1127,6 +1255,10 @@ select {
 }
 
 :root[data-theme="light"] .tag-list li {
+  border-color: rgba(9, 35, 29, 0.12);
+}
+
+:root[data-theme="light"] .certification-skills span {
   border-color: rgba(9, 35, 29, 0.12);
 }
 
@@ -1229,6 +1361,15 @@ select {
 
   .workflow-visual li {
     grid-template-columns: 2.5rem 1fr;
+  }
+
+  .certification-card {
+    grid-template-columns: 1fr;
+  }
+
+  .certification-badge {
+    width: 84px;
+    height: 84px;
   }
 
   .step-state {
