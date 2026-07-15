@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import NotePreview from "@components/NotePreview.astro";
+import { profile } from "@config/profile";
+import { entrySlug } from "@utils/paths";
+
+const notes = (await getCollection("notes")).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title={`Engineering Notes — ${profile.name}`}
+  description="Concise notes on agent state, code RAG, MCP tool evaluation, and production AI systems."
+  canonicalPath="/notes/"
+>
+  <div class="notes-page">
+    <header class="notes-hero">
+      <p class="section-kicker">Engineering Notes</p>
+      <h1>Notes on production AI systems</h1>
+      <p>Short technical essays on the parts of AI engineering that usually decide whether a system survives production: state, retrieval, tool use, evaluation, and recovery.</p>
+    </header>
+    <div class="notes-list">
+      {notes.map((note) => <NotePreview note={note} slug={entrySlug(note.id)} />)}
+    </div>
+  </div>
+</BaseLayout>

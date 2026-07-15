@@ -1,0 +1,16 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { withBase } from "@utils/paths";
+---
+
+<BaseLayout title="Page not found — Diego Márquez" description="The requested page could not be found." canonicalPath="/404/">
+  <section class="not-found" aria-labelledby="not-found-title">
+    <p class="section-kicker">404</p>
+    <h1 id="not-found-title">Page not found</h1>
+    <p>The page may have moved, or the route may not exist in this static portfolio.</p>
+    <div class="hero-actions">
+      <a class="button primary" href={withBase("/")}>Go home</a>
+      <a class="button secondary" href={withBase("/notes/")}>Read notes</a>
+    </div>
+  </section>
+</BaseLayout>

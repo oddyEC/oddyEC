@@ -1,0 +1,110 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ContactCTA from "@components/ContactCTA.astro";
+import HeroWorkflow from "@components/HeroWorkflow.astro";
+import ProjectPreview from "@components/ProjectPreview.astro";
+import { profile, isConfiguredUrl } from "@config/profile";
+import { entrySlug, withBase } from "@utils/paths";
+
+const projects = (await getCollection("projects")).sort((a, b) => a.data.priority - b.data.priority);
+const githubReady = isConfiguredUrl(profile.githubUrl);
+const resumeReady = profile.resume.enabled;
+const portraitSrc = withBase(profile.portrait.src);
+---
+
+<BaseLayout title={profile.siteTitle} description={profile.description} canonicalPath="/">
+  <section class="hero" aria-labelledby="home-title">
+    <div>
+      <div class="hero-title">
+        <p class="eyebrow">AI ENGINEER · AGENTIC SYSTEMS · APPLIED ML</p>
+        <h1 id="home-title">Diego Márquez</h1>
+        <h2>AI Engineer building reliable agentic systems.</h2>
+      </div>
+      <div class="hero-copy">
+        <p>I design and ship production-ready AI systems combining stateful agents, RAG, tool use, evaluation, observability, and robust backend infrastructure.</p>
+        <p>My background spans software engineering, applied machine learning, data platforms, and enterprise AI architecture.</p>
+      </div>
+      <p class="availability">{profile.availability}</p>
+      <div class="hero-actions" aria-label="Primary actions">
+        <a class="button primary" href={withBase("/#work")}>View selected work</a>
+        {
+          githubReady ? (
+            <a class="button secondary" href={profile.githubUrl} target="_blank" rel="noreferrer">GitHub</a>
+          ) : (
+            <span class="button secondary is-disabled" aria-disabled="true" title="Replace YOUR_GITHUB_URL in src/config/profile.ts">GitHub</span>
+          )
+        }
+        {
+          resumeReady ? (
+            <a class="button secondary" href={withBase(profile.resume.path)}>Download résumé</a>
+          ) : (
+            <span class="button secondary is-disabled" aria-disabled="true" title="Add public/resume.pdf and enable it in src/config/profile.ts">Download résumé</span>
+          )
+        }
+      </div>
+    </div>
+    <HeroWorkflow />
+  </section>
+
+  <section class="section" id="work" aria-labelledby="work-title">
+    <div class="section-header">
+      <p class="section-kicker">Selected Systems</p>
+      <h2 id="work-title">Engineering case studies for reliable AI systems</h2>
+      <p>Projects are separated by status so reviewers can distinguish active work, planned design, and recreated public case studies.</p>
+    </div>
+    <div class="project-grid">
+      {projects.map((project) => <ProjectPreview project={project} slug={entrySlug(project.id)} />)}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="build-title">
+    <div class="section-header">
+      <p class="section-kicker">How I Build</p>
+      <h2 id="build-title">How I build AI systems</h2>
+      <p>I prefer bounded autonomy: deterministic controls around probabilistic models, explicit state, observable tool calls, and human approval when the cost of a wrong action is significant.</p>
+    </div>
+    <div class="principles-grid">
+      <article class="principle">
+        <h3>Design for failure</h3>
+        <p>Retries, idempotency, timeouts, durable state, and recovery are part of the architecture—not fixes added after deployment.</p>
+      </article>
+      <article class="principle">
+        <h3>Evaluate behavior, not demos</h3>
+        <p>I define expected behavior, datasets, failure categories, and measurable quality before optimizing prompts or changing models.</p>
+      </article>
+      <article class="principle">
+        <h3>Own the system end to end</h3>
+        <p>Models are only one component. APIs, queues, databases, observability, security, product constraints, and operating cost determine whether the system is actually useful.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="about-layout">
+      <div class="about-intro">
+        <p class="section-kicker">About</p>
+        <h2 id="about-title">Software engineering depth applied to AI products</h2>
+        <figure class="about-portrait">
+          <img
+            src={portraitSrc}
+            alt={profile.portrait.alt}
+            width="400"
+            height="400"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>AI Engineering / Applied ML / Backend systems</figcaption>
+        </figure>
+      </div>
+      <div class="about-copy">
+        <p>I’m an AI Engineer with a background in software engineering and a master’s degree in Data Science.</p>
+        <p>My experience combines applied machine learning, data engineering, backend development, cloud infrastructure, and enterprise AI architecture. More recently, I have focused on agentic workflows, RAG, AI evaluation, governance, and the infrastructure required to operate LLM-powered systems reliably.</p>
+        <p>I’m particularly interested in roles where I can own the path from technical design to production behavior and measurable business value.</p>
+        <p class="tech-line">{profile.technologies}</p>
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA />
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+interface NavItem {
+  label: string;
+  href: string;
+  external?: boolean;
+  disabled?: boolean;
+  title?: string;
+}
+
+interface Props {
+  navItems: NavItem[];
+}
+
+const { navItems } = Astro.props;
+---
+
+<div class="mobile-nav" id="mobile-navigation" data-mobile-menu hidden>
+  <nav aria-label="Mobile navigation">
+    {navItems.map((item) =>
+      item.disabled ? (
+        <span class="mobile-nav-link is-disabled" aria-disabled="true" title={item.title}>
+          {item.label}
+        </span>
+      ) : (
+        <a
+          class="mobile-nav-link"
+          href={item.href}
+          target={item.external ? "_blank" : undefined}
+          rel={item.external ? "noreferrer" : undefined}
+        >
+          {item.label}
+        </a>
+      )
+    )}
+  </nav>
+</div>

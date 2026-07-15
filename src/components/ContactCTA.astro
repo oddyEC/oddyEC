@@ -1,0 +1,30 @@
+---
+import { profile, isConfiguredEmail, isConfiguredUrl } from "@config/profile";
+
+const emailReady = isConfiguredEmail(profile.email);
+const linkedInReady = isConfiguredUrl(profile.linkedInUrl);
+---
+
+<section class="contact-cta" aria-labelledby="contact-title">
+  <div>
+    <div class="section-kicker">Contact</div>
+    <h2 id="contact-title">Let’s build AI systems that survive contact with production.</h2>
+    <p>I’m open to AI Engineering roles where reliability, product judgment, and end-to-end ownership matter.</p>
+  </div>
+  <div class="cta-actions">
+    {
+      emailReady ? (
+        <a class="button primary" href={`mailto:${profile.email}`}>Contact me</a>
+      ) : (
+        <span class="button primary is-disabled" aria-disabled="true" title="Replace YOUR_EMAIL in src/config/profile.ts">Contact me</span>
+      )
+    }
+    {
+      linkedInReady ? (
+        <a class="button secondary" href={profile.linkedInUrl} target="_blank" rel="noreferrer">LinkedIn</a>
+      ) : (
+        <span class="button secondary is-disabled" aria-disabled="true" title="Replace YOUR_LINKEDIN_URL in src/config/profile.ts">LinkedIn</span>
+      )
+    }
+  </div>
+</section>

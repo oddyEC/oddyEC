@@ -1,0 +1,25 @@
+---
+import type { CollectionEntry } from "astro:content";
+import TechTags from "@components/TechTags.astro";
+import { withBase } from "@utils/paths";
+
+interface Props {
+  note: CollectionEntry<"notes">;
+  slug: string;
+}
+
+const { note, slug } = Astro.props;
+---
+
+<article class="note-preview">
+  <div class="note-date">
+    <time datetime={note.data.publishedAt.toISOString()}>{note.data.publishedAt.toLocaleDateString("en", {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+    })}</time>
+  </div>
+  <h2><a href={withBase(`/notes/${slug}/`)}>{note.data.title}</a></h2>
+  <p>{note.data.description}</p>
+  <TechTags tags={note.data.tags} />
+</article>

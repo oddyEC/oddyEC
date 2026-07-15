@@ -1,0 +1,13 @@
+---
+interface Props {
+  title: string;
+  body: string;
+}
+
+const { title, body } = Astro.props;
+---
+
+<article class="decision-block">
+  <h3>{title}</h3>
+  <p>{body}</p>
+</article>

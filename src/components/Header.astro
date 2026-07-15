@@ -1,0 +1,171 @@
+---
+import MobileNavigation from "@components/MobileNavigation.astro";
+import { profile, isConfiguredUrl } from "@config/profile";
+import { withBase } from "@utils/paths";
+
+const githubReady = isConfiguredUrl(profile.githubUrl);
+const linkedInReady = isConfiguredUrl(profile.linkedInUrl);
+const resumeReady = profile.resume.enabled;
+const resumeHref = resumeReady ? withBase(profile.resume.path) : "";
+
+const navItems = [
+  { label: "Work", href: withBase("/#work") },
+  { label: "Notes", href: withBase("/notes/") },
+  { label: "About", href: withBase("/#about") },
+  {
+    label: "Résumé",
+    href: resumeHref,
+    disabled: !resumeReady,
+    title: "Add public/resume.pdf and enable it in src/config/profile.ts",
+  },
+  {
+    label: "GitHub",
+    href: githubReady ? profile.githubUrl : "",
+    external: true,
+    disabled: !githubReady,
+    title: "Replace YOUR_GITHUB_URL in src/config/profile.ts",
+  },
+  {
+    label: "LinkedIn",
+    href: linkedInReady ? profile.linkedInUrl : "",
+    external: true,
+    disabled: !linkedInReady,
+    title: "Replace YOUR_LINKEDIN_URL in src/config/profile.ts",
+  },
+];
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href={withBase("/")} aria-label="Diego Márquez home">
+      <span class="brand-mark" aria-hidden="true">DM</span>
+      <span class="brand-text">
+        <span>{profile.name}</span>
+        <small>{profile.role}</small>
+      </span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      {navItems.map((item) =>
+        item.disabled ? (
+          <span class="nav-link is-disabled" aria-disabled="true" title={item.title}>
+            {item.label}
+          </span>
+        ) : (
+          <a
+            class="nav-link"
+            href={item.href}
+            target={item.external ? "_blank" : undefined}
+            rel={item.external ? "noreferrer" : undefined}
+          >
+            {item.label}
+          </a>
+        )
+      )}
+    </nav>
+
+    <div class="header-actions">
+      <button
+        class="theme-toggle"
+        type="button"
+        aria-label="Switch to dark theme"
+        aria-pressed="false"
+        data-theme-toggle
+      >
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span data-theme-label>Light</span>
+      </button>
+
+      <button
+        class="mobile-nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-navigation"
+        data-nav-toggle
+      >
+        <span>Menu</span>
+        <span class="menu-lines" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+  <MobileNavigation navItems={navItems} />
+</header>
+
+<script is:inline>
+  (() => {
+    const toggle = document.querySelector("[data-nav-toggle]");
+    const menu = document.querySelector("[data-mobile-menu]");
+    if (!toggle || !menu) return;
+
+    const close = () => {
+      toggle.setAttribute("aria-expanded", "false");
+      menu.setAttribute("hidden", "");
+      document.body.classList.remove("has-open-menu");
+    };
+
+    const open = () => {
+      toggle.setAttribute("aria-expanded", "true");
+      menu.removeAttribute("hidden");
+      document.body.classList.add("has-open-menu");
+      const firstLink = menu.querySelector("a");
+      if (firstLink instanceof HTMLElement) firstLink.focus();
+    };
+
+    toggle.addEventListener("click", () => {
+      const expanded = toggle.getAttribute("aria-expanded") === "true";
+      if (expanded) close();
+      else open();
+    });
+
+    menu.addEventListener("click", (event) => {
+      if (event.target instanceof Element && event.target.closest("a")) {
+        close();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") close();
+    });
+  })();
+</script>
+
+<script is:inline>
+  (() => {
+    const toggles = document.querySelectorAll("[data-theme-toggle]");
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (toggles.length === 0) return;
+
+    const normalizeTheme = (value) => (value === "dark" ? "dark" : "light");
+
+    const applyTheme = (theme, persist = false) => {
+      const normalized = normalizeTheme(theme);
+      document.documentElement.dataset.theme = normalized;
+      document.documentElement.style.colorScheme = normalized;
+      if (metaTheme) {
+        metaTheme.setAttribute("content", normalized === "dark" ? "#050707" : "#f7fbf8");
+      }
+      if (persist) {
+        localStorage.setItem("theme", normalized);
+      }
+
+      toggles.forEach((toggle) => {
+        toggle.setAttribute("aria-pressed", normalized === "dark" ? "true" : "false");
+        toggle.setAttribute(
+          "aria-label",
+          normalized === "dark" ? "Switch to light theme" : "Switch to dark theme"
+        );
+        const label = toggle.querySelector("[data-theme-label]");
+        if (label) label.textContent = normalized === "dark" ? "Dark" : "Light";
+      });
+    };
+
+    applyTheme(document.documentElement.dataset.theme);
+
+    toggles.forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        const nextTheme = normalizeTheme(document.documentElement.dataset.theme) === "dark" ? "light" : "dark";
+        applyTheme(nextTheme, true);
+      });
+    });
+  })();
+</script>

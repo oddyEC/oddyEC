@@ -1,0 +1,22 @@
+{
+  "name": "diego-marquez-ai-engineering-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "check:links": "node scripts/check-links.mjs",
+    "validate": "npm run check && npm run build && npm run check:links"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^7.0.9"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "typescript": "^5.9.3"
+  }
+}

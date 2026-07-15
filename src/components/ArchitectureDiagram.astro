@@ -1,0 +1,20 @@
+---
+interface Props {
+  nodes: string[];
+}
+
+const { nodes } = Astro.props;
+---
+
+<section class="architecture-section" aria-labelledby="architecture-diagram-title">
+  <div class="section-kicker">Architecture</div>
+  <h2 id="architecture-diagram-title">System path</h2>
+  <div class="architecture-diagram">
+    {nodes.map((node, index) => (
+      <>
+        <div class="architecture-node">{node}</div>
+        {index < nodes.length - 1 && <span class="architecture-arrow" aria-hidden="true">→</span>}
+      </>
+    ))}
+  </div>
+</section>

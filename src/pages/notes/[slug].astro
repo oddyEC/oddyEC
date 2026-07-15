@@ -1,0 +1,46 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ContactCTA from "@components/ContactCTA.astro";
+import TechTags from "@components/TechTags.astro";
+import { profile } from "@config/profile";
+import { entrySlug, withBase } from "@utils/paths";
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes");
+  return notes.map((note) => ({
+    params: { slug: entrySlug(note.id) },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const slug = entrySlug(note.id);
+const { Content } = await render(note);
+---
+
+<BaseLayout
+  title={`${note.data.title} — ${profile.name}`}
+  description={note.data.description}
+  canonicalPath={`/notes/${slug}/`}
+  ogType="article"
+>
+  <div class="note-page">
+    <header class="note-hero">
+      <a class="back-link" href={withBase("/notes/")}>Back to notes</a>
+      <p class="section-kicker">Engineering Note</p>
+      <h1>{note.data.title}</h1>
+      <p>{note.data.description}</p>
+      <time class="note-date" datetime={note.data.publishedAt.toISOString()}>{note.data.publishedAt.toLocaleDateString("en", {
+        year: "numeric",
+        month: "short",
+        day: "2-digit",
+      })}</time>
+      <TechTags tags={note.data.tags} />
+    </header>
+    <article class="prose">
+      <Content />
+    </article>
+  </div>
+  <ContactCTA />
+</BaseLayout>

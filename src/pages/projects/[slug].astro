@@ -1,0 +1,56 @@
+---
+import { getCollection, render } from "astro:content";
+import ArchitectureDiagram from "@components/ArchitectureDiagram.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import CaseStudyHeader from "@components/CaseStudyHeader.astro";
+import ContactCTA from "@components/ContactCTA.astro";
+import DecisionBlock from "@components/DecisionBlock.astro";
+import DisclosureBlock from "@components/DisclosureBlock.astro";
+import MetricsTable from "@components/MetricsTable.astro";
+import { profile } from "@config/profile";
+import { entrySlug } from "@utils/paths";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: entrySlug(project.id) },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const slug = entrySlug(project.id);
+const { Content } = await render(project);
+const description = project.data.description.join(" ");
+---
+
+<BaseLayout
+  title={`${project.data.title} — ${profile.name}`}
+  description={description}
+  canonicalPath={`/projects/${slug}/`}
+  ogType="article"
+>
+  <div class="case-page">
+    <CaseStudyHeader project={project.data} />
+    {project.data.disclosure && <DisclosureBlock text={project.data.disclosure} />}
+    {project.data.architecture && <ArchitectureDiagram nodes={project.data.architecture} />}
+    {project.data.metrics && <MetricsTable metrics={project.data.metrics} />}
+    {
+      project.data.decisions && (
+        <section class="decisions-section" aria-labelledby="decisions-title">
+          <div class="section-kicker">Trade-offs</div>
+          <h2 id="decisions-title">Key engineering decisions</h2>
+          <div class="decisions-grid">
+            {project.data.decisions.map((decision) => (
+              <DecisionBlock title={decision.title} body={decision.body} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+    <article class="prose">
+      <Content />
+    </article>
+  </div>
+  <ContactCTA />
+</BaseLayout>

@@ -1,0 +1,12 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<aside class="disclosure-block" role="note">
+  <strong>Disclosure</strong>
+  <p>{text}</p>
+</aside>

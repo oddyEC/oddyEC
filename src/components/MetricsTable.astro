@@ -1,0 +1,38 @@
+---
+interface Metric {
+  label: string;
+  value: string;
+  note?: string | undefined;
+}
+
+interface Props {
+  metrics: Metric[];
+}
+
+const { metrics } = Astro.props;
+---
+
+<section class="metrics-section" aria-labelledby="metrics-title">
+  <div class="section-kicker">Measurement</div>
+  <h2 id="metrics-title">Evaluation metrics</h2>
+  <div class="table-wrap">
+    <table class="metrics-table">
+      <thead>
+        <tr>
+          <th scope="col">Metric</th>
+          <th scope="col">Current value</th>
+          <th scope="col">Use</th>
+        </tr>
+      </thead>
+      <tbody>
+        {metrics.map((metric) => (
+          <tr>
+            <th scope="row">{metric.label}</th>
+            <td>{metric.value}</td>
+            <td>{metric.note || "Defines a tracked quality or operating signal."}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>

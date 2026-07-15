@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Diego Márquez monogram">
+  <rect width="64" height="64" rx="14" fill="#050707"/>
+  <path d="M16 44V20h10c7.5 0 12 4.5 12 12s-4.5 12-12 12H16Z" fill="none" stroke="#d7f7ef" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M42 44V20l8 14 8-14v24" fill="none" stroke="#40f0c8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16 52h32" stroke="#40f0c8" stroke-width="3" stroke-linecap="round"/>
+</svg>

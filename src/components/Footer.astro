@@ -1,0 +1,43 @@
+---
+import { profile, isConfiguredUrl, isConfiguredEmail } from "@config/profile";
+import { withBase } from "@utils/paths";
+
+const githubReady = isConfiguredUrl(profile.githubUrl);
+const linkedInReady = isConfiguredUrl(profile.linkedInUrl);
+const emailReady = isConfiguredEmail(profile.email);
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <a class="footer-brand" href={withBase("/")}>{profile.name}</a>
+      <p>{profile.description}</p>
+    </div>
+    <nav aria-label="Footer navigation" class="footer-links">
+      <a href={withBase("/#work")}>Work</a>
+      <a href={withBase("/notes/")}>Notes</a>
+      <a href={withBase("/#about")}>About</a>
+      {
+        githubReady ? (
+          <a href={profile.githubUrl} target="_blank" rel="noreferrer">GitHub</a>
+        ) : (
+          <span aria-disabled="true">GitHub</span>
+        )
+      }
+      {
+        linkedInReady ? (
+          <a href={profile.linkedInUrl} target="_blank" rel="noreferrer">LinkedIn</a>
+        ) : (
+          <span aria-disabled="true">LinkedIn</span>
+        )
+      }
+      {
+        emailReady ? (
+          <a href={`mailto:${profile.email}`}>Email</a>
+        ) : (
+          <span aria-disabled="true">Email</span>
+        )
+      }
+    </nav>
+  </div>
+</footer>

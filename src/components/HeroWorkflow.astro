@@ -1,0 +1,18 @@
+---
+const steps = ["Intake", "Route", "Plan", "Approve", "Execute", "Evaluate"];
+---
+
+<figure class="workflow-visual" aria-label="Agentic workflow from intake to evaluation">
+  <div class="workflow-track" aria-hidden="true">
+    <span class="workflow-pulse"></span>
+  </div>
+  <ol>
+    {steps.map((step, index) => (
+      <li style={`--step-index: ${index}`}>
+        <span class="step-index">{String(index + 1).padStart(2, "0")}</span>
+        <span class="step-label">{step}</span>
+        <span class="step-state">bounded</span>
+      </li>
+    ))}
+  </ol>
+</figure>

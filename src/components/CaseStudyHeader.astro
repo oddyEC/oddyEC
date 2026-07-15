@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from "astro:content";
+import StatusBadge from "@components/StatusBadge.astro";
+import TechTags from "@components/TechTags.astro";
+import { withBase } from "@utils/paths";
+
+interface Props {
+  project: CollectionEntry<"projects">["data"];
+}
+
+const { project } = Astro.props;
+---
+
+<header class="case-header">
+  <a class="back-link" href={withBase("/#work")}>Back to selected work</a>
+  <StatusBadge status={project.status} />
+  <h1>{project.title}</h1>
+  {project.headline && <p class="case-headline">{project.headline}</p>}
+  <div class="case-summary">
+    {project.description.map((paragraph) => <p>{paragraph}</p>)}
+  </div>
+  <TechTags tags={project.tags} />
+</header>
